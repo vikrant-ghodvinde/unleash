@@ -1,7 +1,7 @@
 {
   "name": "ai-carousel",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@ffmpeg/core": "^0.12.4",
     "@ffmpeg/ffmpeg": "^0.12.7",
