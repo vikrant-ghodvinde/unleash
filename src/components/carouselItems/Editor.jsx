@@ -478,24 +478,7 @@ function Editor() {
       {loading && <DownloadLoader />}
       <div className="content__wrapper--container">
         <Container>
-          {mobileView && (
-            <Modal centered show={mobileView === isMobile ? true : false}>
-              <Modal.Body>
-                <div className="text-center">
-                  <p>
-                    This app is not Compatible for mobile devices. If you still
-                    want to take a look, please click on continue.
-                  </p>
-                  <button
-                    className="btn btn-primary mx-auto"
-                    onClick={() => setMobileView(null)}
-                  >
-                    Continue To Mobile
-                  </button>
-                </div>
-              </Modal.Body>
-            </Modal>
-          )}
+          {mobileView && alert("Continue")}
           <Swiper
             navigation={true}
             modules={[Navigation]}
