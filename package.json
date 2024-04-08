@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-color": "^2.19.3",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-emoji-picker": "^1.0.13",
     "react-i18next": "^13.0.2",
@@ -53,7 +54,7 @@
   },
   "scripts": {
     "start": "set PORT=2000 && react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

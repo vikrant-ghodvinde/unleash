@@ -5,7 +5,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import IntroSlide from "./IntroSlide";
 import OutroSlide from "./OutroSlide";
 import ContentSlider from "./ContentSlider";
@@ -25,6 +25,7 @@ import DownloadLoader from "../DownloadLoader";
 import TwitterPostSlide from "./TwitterPostSlide";
 import SecondSlide from "./SocialMedia/SecondSlide";
 import FirstSlide from "./SocialMedia/FirstSlide";
+import { isMobile } from "react-device-detect";
 
 function Editor() {
   const originalSlides = [
@@ -470,23 +471,43 @@ function Editor() {
     );
   };
 
+  const [mobileView, setMobileView] = useState(isMobile);
+
   return (
     <React.Fragment>
       {loading && <DownloadLoader />}
       <div className="content__wrapper--container">
         <Container>
-            <Swiper
-              navigation={true}
-              modules={[Navigation]}
-              slidesPerView={1}
-              centeredSlides={true}
-              spaceBetween={0}
-              className="editor__slider"
-              onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
-              ref={swiperRef}
-            >
-              {slides.map(renderSlide)}
-            </Swiper>
+          {mobileView && (
+            <Modal centered show={mobileView === isMobile ? true : false}>
+              <Modal.Body>
+                <div className="text-center">
+                  <p>
+                    This app is not Compatible for mobile devices. If you still
+                    want to take a look, please click on continue.
+                  </p>
+                  <button
+                    className="btn btn-primary mx-auto"
+                    onClick={() => setMobileView(null)}
+                  >
+                    Continue To Mobile
+                  </button>
+                </div>
+              </Modal.Body>
+            </Modal>
+          )}
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            slidesPerView={1}
+            centeredSlides={true}
+            spaceBetween={0}
+            className="editor__slider"
+            onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+            ref={swiperRef}
+          >
+            {slides.map(renderSlide)}
+          </Swiper>
         </Container>
         <DownloadModal
           modalShow={downloadModal.show}
